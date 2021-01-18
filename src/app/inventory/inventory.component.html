@@ -1,0 +1,73 @@
+<div class="inventoryContainer">
+    <h2> Manage Inventory </h2>
+    <!-- Update Inventory -->
+    <form id="inventoryForm" (ngSubmit)="updateBookingsBetweenHours()">
+        <mat-form-field>
+            <mat-label> From : </mat-label>
+            <mat-select [(ngModel)]="selectedFromHour" (ngModelChange)="fromHourSelected($event)" name="fromHour">
+                <mat-option *ngFor="let fromTime of data"   [value]='fromTime.hour'>
+                    {{fromTime.hour}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label> To : </mat-label>
+            <mat-select [(ngModel)]="selectedToHour" name="toHour" [disabled]="!enableToHour">
+                <mat-option *ngFor="let toTime of toHoursList" [value]='toTime.hour'>
+                    {{toTime.hour}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>No of bookings per 15 minutes</mat-label>
+            <input matInput type="text" [(ngModel)]="bookings" (keyup)="unableUpdate = true"  name="bookings">
+        </mat-form-field>
+        
+        <button [disabled]="!unableUpdate" mat-stroked-button color="primary">Update bookings</button>
+    </form>
+    <!-- Ends Update Inventory -->
+
+    <!-- View Inventory -->
+    <table mat-table class="mat-elevation-z8" [dataSource]="data">
+        <ng-container matColumnDef="hour">
+            <th mat-header-cell *matHeaderCellDef> Hour </th>
+            <td mat-cell *matCellDef="let time" > {{ time.hour }} </td>
+            <td mat-footer-cell *matFooterCellDef> Total </td>
+        </ng-container>     
+        <ng-container matColumnDef="m00" >
+            <th mat-header-cell *matHeaderCellDef> 00 Minutes </th>
+            <td mat-cell *matCellDef="let time" (change)="updateBooking($event, time.hour)" >
+                <input matInput type="text" [(ngModel)]="time.minutes.m00" name="m00" matTooltip="Edit">
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="m15" name="m15">
+            <th mat-header-cell *matHeaderCellDef> 15 Minutes </th>
+            <td mat-cell *matCellDef="let time" (change)="updateBooking($event, time.hour)">
+                <input matInput  type="text" [(ngModel)]="time.minutes.m15" name="m15" matTooltip="Edit">
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="m30">
+            <th mat-header-cell *matHeaderCellDef> 30 Minutes </th>
+            <td mat-cell *matCellDef="let time" (change)="updateBooking($event, time.hour)" >
+                <input matInput type="text" [(ngModel)]="time.minutes.m30" name="m30" matTooltip="Edit">
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="m45">
+            <th mat-header-cell *matHeaderCellDef> 45 Minutes </th>
+            <td mat-cell *matCellDef="let time" (change)="updateBooking($event, time.hour)">
+                <input matInput type="text" [(ngModel)]="time.minutes.m45" name="m45" matTooltip="Edit">
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="hourTotal">
+            <th mat-header-cell *matHeaderCellDef> Total </th>
+            <td mat-cell *matCellDef="let time">
+                {{ time.hourTotal }}
+            </td>
+        </ng-container>
+            
+        <tr mat-header-row *matHeaderRowDef="displayColumns"> </tr>
+        <tr mat-row *matRowDef="let row; columns: displayColumns"> </tr>
+    </table>
+    <!-- Ends View Inventory -->
+</div>

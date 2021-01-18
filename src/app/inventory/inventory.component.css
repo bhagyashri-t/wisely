@@ -1,0 +1,49 @@
+.inventoryContainer {
+    text-align: center;
+    margin-top: 120px;
+}
+.mat-table {
+    width: 90%;
+    margin: auto;
+    margin-top: 50px;
+}
+
+ th{
+    font-size: 14px;
+}
+td {
+    cursor: pointer;
+}
+.mat-header-cell {
+    text-align: center;
+    color: #3f51b5;
+    font-weight: 500;
+}
+td:first-child {
+    color:rgb(58, 58, 65);
+    font-weight: 500;
+    cursor: auto;
+}
+td:last-child {
+    cursor: auto;
+}
+table {
+    width: 100%;
+}
+td .mat-input-element {
+    border:none;
+    text-align: center;
+    width: 50%;
+    cursor: pointer;
+}
+#inventoryForm {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    flex-flow: row wrap;
+    width: 60%;
+    margin: auto;
+}
+.mat-form-field, button {
+    margin: 10px;
+}

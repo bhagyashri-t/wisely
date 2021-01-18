@@ -1,0 +1,26 @@
+.reservationsContainer {
+    margin-top: 120px;
+    text-align: center;
+}
+
+#reservationsForm {
+    text-align: center;
+    width: 50%;
+    margin: auto;
+}
+
+mat-form-field {
+    width: 100%;
+    font-size: larger;
+    margin: 5px 0px;
+}
+mat-label {
+    font-weight: 400;
+}
+.mat-raised-button.mat-primary {
+    margin-top: 20px;
+}
+.enabledButton {
+    background-color: rgb(23, 180, 17);
+    color: #ffffff;
+}
